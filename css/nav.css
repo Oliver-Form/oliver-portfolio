@@ -1,24 +1,47 @@
 .nav {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 900px;
+  width: 95%;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   z-index: 1000;
   padding: 1rem 1rem 1rem 0;
   display: flex;
   justify-content: end;
   align-items: end;
-  gap: 2rem;
-  border-bottom: 2px solid #37bef8d1;
+  /* border-bottom: 2px solid #37bef8d1; */
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin: 1.5rem auto 0 auto;
 }
 
 .nav__list {
   display: flex;
-  gap: 2rem;
+  gap: 0;
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
 }
 
+.nav__list li {
+  flex: 1 1 0;
+  text-align: center;
+  border-right: 2px solid #37bef8d1;
+  padding: 0 0.5rem;
+}
 
+.nav__list li:last-child {
+  border-right: none;
+}
+
+.nav__link {
+  text-decoration: none;
+  color: #000;
+}
