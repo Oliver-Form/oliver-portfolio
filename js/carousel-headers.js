@@ -108,4 +108,15 @@
       }
     }
   });
+
+  // Make entire <li> clickable for nav
+  const navItems = document.querySelectorAll('.nav__list li');
+  navItems.forEach((item, idx) => {
+    item.style.cursor = 'pointer';
+    item.addEventListener('click', e => {
+      // Prevent double event if <a> is clicked
+      if (e.target.closest('a')) return;
+      if (idx !== current) showHeader(idx);
+    });
+  });
 })();
