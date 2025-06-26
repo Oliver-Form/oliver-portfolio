@@ -8,18 +8,32 @@ html {
   scroll-behavior: smooth;
 }
 
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #0f0f1a;
+}
+
 body {
   padding: 20px;
-  padding-top: 40px; 
-  margin: 5%;
-  background-color: #f5f5f5;
-  color: #333;
+  padding-top: 40px;
+  margin: 0;
+  background: transparent;
+  color: #cccccc;
 }
 
 header,
 footer {
   text-align: center;
   margin-bottom: 20px;
+}
+
+header {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  margin-top: 128px;
 }
 
 header img {
@@ -29,6 +43,19 @@ header img {
   height: auto;
   margin: 0 auto;
   border-radius: 50%;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+canvas#background {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
 }
 
 @media (max-width: 400px) {
