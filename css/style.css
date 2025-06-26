@@ -100,3 +100,32 @@ canvas#background {
     padding-top: 60px;
   }
 }
+
+.resume-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 32px;
+  font-family: inherit;
+  font-size: 1.08em;
+  color: #fff;
+  background: linear-gradient(90deg, #4ea1d3 0%, #b084f9 100%);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 24px #4ea1d355, 0 1.5px 6px #0008;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.resume-btn::after {
+  content: '';
+  display: none;
+}
+.resume-btn:hover, .resume-btn:focus {
+  background: linear-gradient(90deg, #b084f9 0%, #4ea1d3 100%);
+  box-shadow: 0 8px 32px #b084f955, 0 2px 8px #000a;
+  transform: translateY(-2px) scale(1.04);
+}

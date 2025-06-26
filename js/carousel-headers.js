@@ -8,9 +8,11 @@
   ];
   let current = 0;
   const ANIMATION_DURATION = 600;
+  let isTransitioning = false;
 
   function showHeader(targetIdx) {
-    if (targetIdx === current) return;
+    if (targetIdx === current || isTransitioning) return;
+    isTransitioning = true;
     headers.forEach((header) => {
       header.classList.remove('active', 'slide-left', 'slide-right');
     });
@@ -33,6 +35,7 @@
         }
       });
       current = targetIdx;
+      isTransitioning = false;
     }, ANIMATION_DURATION);
   }
 
@@ -44,4 +47,14 @@
   });
   headers[0].classList.add('active');
   headers[0].style.display = 'block';
+
+  // Vim-like keybindings: h (left), l (right)
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'h' && current > 0) {
+      showHeader(current - 1);
+    } else if (e.key === 'l' && current < headers.length - 1) {
+      showHeader(current + 1);
+    }
+  });
 })();
