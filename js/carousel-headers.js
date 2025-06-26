@@ -9,12 +9,43 @@
   let current = 0;
   const ANIMATION_DURATION = 600;
   let isTransitioning = false;
+  let keyQueue = [];
+  let keyTimeout = null;
+  const KEY_DELAY = 60; // ms
 
-  function showHeader(targetIdx) {
+  function processKeyQueue() {
+    if (keyQueue.length === 0) return;
+    if (isTransitioning) {
+      setTimeout(processKeyQueue, 8); // check more frequently for snappier feel
+      return;
+    }
+    const next = keyQueue.shift();
+    if (next === 'h' && current > 0) {
+      showHeader(current - 1, true);
+    } else if (next === 'l' && current < headers.length - 1) {
+      showHeader(current + 1, true);
+    }
+    if (keyQueue.length > 0) {
+      setTimeout(processKeyQueue, ANIMATION_DURATION * 0.7); // overlap transitions for smoother feel
+    }
+  }
+
+  // Accepts an optional 'fast' param to reduce animation duration for rapid nav
+  function showHeader(targetIdx, fast) {
     if (targetIdx === current || isTransitioning) return;
     isTransitioning = true;
     headers.forEach((header) => {
       header.classList.remove('active', 'slide-left', 'slide-right');
+    });
+    // Update nav active state and aria-current
+    navLinks.forEach((link, idx) => {
+      if (idx === targetIdx) {
+        link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
+      } else {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
+      }
     });
     const direction = targetIdx > current ? 'right' : 'left';
     const outClass = direction === 'right' ? 'slide-left' : 'slide-right';
@@ -36,7 +67,7 @@
       });
       current = targetIdx;
       isTransitioning = false;
-    }, ANIMATION_DURATION);
+    }, fast ? ANIMATION_DURATION * 0.7 : ANIMATION_DURATION);
   }
 
   navLinks.forEach((link, idx) => {
@@ -48,13 +79,28 @@
   headers[0].classList.add('active');
   headers[0].style.display = 'block';
 
+  // Set initial nav active state and aria-current
+  navLinks.forEach((link, idx) => {
+    if (idx === 0) {
+      link.classList.add('active');
+      link.setAttribute('aria-current', 'page');
+    } else {
+      link.classList.remove('active');
+      link.removeAttribute('aria-current');
+    }
+  });
+
   // Vim-like keybindings: h (left), l (right)
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.key === 'h' && current > 0) {
-      showHeader(current - 1);
-    } else if (e.key === 'l' && current < headers.length - 1) {
-      showHeader(current + 1);
+    if ((e.key === 'h' && current > 0) || (e.key === 'l' && current < headers.length - 1)) {
+      keyQueue.push(e.key);
+      if (!keyTimeout) {
+        keyTimeout = setTimeout(() => {
+          keyTimeout = null;
+          processKeyQueue();
+        }, KEY_DELAY);
+      }
     }
   });
 })();

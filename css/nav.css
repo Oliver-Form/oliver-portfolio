@@ -28,6 +28,7 @@
   padding: 0;
   margin: 0;
   width: 100%;
+  position: relative;
 }
 
 .nav__list li {
@@ -44,4 +45,22 @@
 .nav__link {
   text-decoration: none;
   color: #000;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.nav__link.active {
+  color: #b084f9;
+}
+
+.nav__link.active::after {
+  content: '▼';
+  display: block;
+  color: #b084f9;
+  font-size: 1.1em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1.7em;
+  pointer-events: none;
 }
