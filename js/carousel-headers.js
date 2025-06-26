@@ -101,6 +101,11 @@
           processKeyQueue();
         }, KEY_DELAY);
       }
+    } else if (['1','2','3','4'].includes(e.key)) {
+      const idx = parseInt(e.key, 10) - 1;
+      if (idx >= 0 && idx < headers.length && idx !== current && !isTransitioning) {
+        showHeader(idx);
+      }
     }
   });
 })();
