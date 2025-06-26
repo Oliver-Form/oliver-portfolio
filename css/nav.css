@@ -4,13 +4,13 @@
   left: 0;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 0 5px 2px #37bef8d1;
   z-index: 1000;
-  padding: 1rem 0;
+  padding: 1rem 1rem 1rem 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: end;
+  align-items: end;
   gap: 2rem;
+  border-bottom: 2px solid #37bef8d1;
 }
 
 .nav__list {
