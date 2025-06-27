@@ -20,9 +20,9 @@
       return;
     }
     const next = keyQueue.shift();
-    if (next === 'h' && current > 0) {
+    if ((next === 'h' || next === 'ArrowLeft') && current > 0) {
       showHeader(current - 1, true);
-    } else if (next === 'l' && current < headers.length - 1) {
+    } else if ((next === 'l' || next === 'ArrowRight') && current < headers.length - 1) {
       showHeader(current + 1, true);
     }
     if (keyQueue.length > 0) {
@@ -93,7 +93,9 @@
   // Vim-like keybindings: h (left), l (right)
   document.addEventListener('keydown', (e) => {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.ctrlKey || e.metaKey || e.altKey) return;
-    if ((e.key === 'h' && current > 0) || (e.key === 'l' && current < headers.length - 1)) {
+    if ((e.key === 'h' && current > 0) || (e.key === 'l' && current < headers.length - 1)
+        || (e.key === 'ArrowLeft' && current > 0) || (e.key === 'ArrowRight' && current < headers.length - 1)) {
+      // Support h/l and arrow keys for tab switching
       keyQueue.push(e.key);
       if (!keyTimeout) {
         keyTimeout = setTimeout(() => {

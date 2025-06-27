@@ -129,3 +129,161 @@ canvas#background {
   box-shadow: 0 8px 32px #b084f955, 0 2px 8px #000a;
   transform: translateY(-2px) scale(1.04);
 }
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin: 2.5rem 0 0 0;
+}
+.project-card {
+  background: rgba(20, 22, 34, 0.98);
+  border: 1.5px solid #232347;
+  border-radius: 1.1rem;
+  box-shadow: 0 2px 16px #0005;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 260px;
+  max-width: 340px;
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.18s, border 0.18s, transform 0.18s;
+  position: relative;
+}
+.project-card:hover, .project-card:focus-within {
+  border-color: #4ea1d3;
+  box-shadow: 0 4px 32px #4ea1d355, 0 2px 8px #000a;
+  transform: translateY(-2px) scale(1.03);
+}
+.project-title {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #b084f9;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+.project-desc {
+  color: #bfc9d5;
+  font-size: 1em;
+  margin-bottom: 1.2rem;
+  line-height: 1.5;
+}
+.project-links {
+  display: flex;
+  gap: 1.2rem;
+}
+.project-link {
+  color: #4ea1d3;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1em;
+  border-bottom: 1.5px dashed #4ea1d3;
+  transition: color 0.18s, border 0.18s;
+  outline: none;
+}
+.project-link:hover, .project-link:focus {
+  color: #b084f9;
+  border-bottom: 1.5px solid #b084f9;
+}
+.project-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.93em;
+  font-weight: 600;
+  padding: 0.18em 0.7em 0.18em 0.55em;
+  border-radius: 0.7em;
+  background: #232347;
+  color: #bfc9d5;
+  border: 1.2px solid #35356a;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 4px #0002;
+  margin-right: 0.1em;
+  margin-bottom: 0.1em;
+  transition: background 0.18s, color 0.18s, border 0.18s;
+  user-select: none;
+}
+.tag-js {
+  background: #232347 linear-gradient(90deg, #f7e018 0%, #ffe484 100%);
+  color: #232347;
+  border-color: #f7e018;
+}
+.tag-css {
+  background: #232347 linear-gradient(90deg, #4ea1d3 0%, #b084f9 100%);
+  color: #fff;
+  border-color: #4ea1d3;
+}
+.tag-html {
+  background: #232347 linear-gradient(90deg, #ff6f3c 0%, #ffd166 100%);
+  color: #fff;
+  border-color: #ff6f3c;
+}
+.tag-md {
+  background: #232347 linear-gradient(90deg, #6dd47e 0%, #bfc9d5 100%);
+  color: #232347;
+  border-color: #6dd47e;
+}
+.tag-vim {
+  background: #232347 linear-gradient(90deg, #019733 0%, #bfc9d5 100%);
+  color: #bfc9d5;
+  border-color: #019733;
+}
+.tag-shell {
+  background: #232347 linear-gradient(90deg, #4ea1d3 0%, #232347 100%);
+  color: #bfc9d5;
+  border-color: #4ea1d3;
+}
+.skill-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.2em;
+  height: 2.1em;
+  margin-bottom: 0.7rem;
+  margin-top: 0.1rem;
+  max-width: 100%;
+  filter: drop-shadow(0 1px 4px #0002);
+  user-select: none;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.projects-list .project-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-bottom: 0.7rem;
+  flex-wrap: wrap;
+}
+.projects-list .project-tags img.skill-icons {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  height: 2.1em;
+  width: auto;
+  max-width: none;
+}
+@media (max-width: 900px) {
+  .projects-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .project-card {
+    max-width: 98vw;
+    min-width: 0;
+    width: 98vw;
+  }
+  .skill-icons {
+    height: 2.2em;
+  }
+}
