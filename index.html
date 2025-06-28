@@ -14,8 +14,32 @@
     <meta property="og:image">
     <meta property="og:site_name" content="Oliver Form | Developer">
     
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/nav.css" />
+    <!-- Inline critical CSS for nav and header -->
+    <style>
+      body { margin: 0; font-family: 'IBM Plex Mono', monospace; background: #f8fafc; }
+      .nav { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.03); position: sticky; top: 0; z-index: 10; }
+      .nav__list { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 1rem 2rem; justify-content: flex-end; }
+      .nav__link { text-decoration: none; color: #222; font-weight: 700; transition: color 0.2s; }
+      .nav__link:hover { color: #2563eb; }
+      .header-container { max-width: 700px; margin: 3rem auto 2rem auto; background: #fff; border-radius: 1.2rem; box-shadow: 0 4px 24px rgba(0,0,0,0.07); padding: 2.5rem 2rem 2rem 2rem; text-align: center; }
+      .header-container img { width: 96px; height: 96px; border-radius: 50%; margin-bottom: 1rem; }
+      .resume-btn { display: inline-block; margin-top: 1rem; background: #2563eb; color: #fff; padding: 0.5rem 1.2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 700; transition: background 0.2s; }
+      .resume-btn:hover { background: #1e40af; }
+      .projects-list { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+      .project-card { background: #f3f4f6; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); padding: 1.5rem 1.2rem; width: 320px; text-align: left; display: flex; flex-direction: column; gap: 0.7rem; }
+      .project-title { font-weight: 700; font-size: 1.1rem; color: #2563eb; }
+      .project-tags { margin-bottom: 0.2rem; }
+      .project-links { display: flex; gap: 1rem; }
+      .project-link { color: #2563eb; text-decoration: none; font-weight: 600; }
+      .project-link:hover { text-decoration: underline; }
+      @media (max-width: 800px) { .projects-list { flex-direction: column; align-items: center; } .header-container { margin: 2rem 0.5rem; } }
+    </style>
+    <!-- Preload nav.css, load as non-blocking -->
+    <link rel="preload" href="css/nav.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/nav.css"></noscript>
+    <!-- Defer non-critical CSS -->
+    <link rel="preload" href="css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="css/style.css"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
@@ -75,8 +99,8 @@
         <p>Placeholder text for contact page</p>
     </header>
 
-    <script src="js/animated-bg.js"></script>
-    <script src="js/carousel-headers.js"></script>
+    <script src="js/animated-bg.js" defer></script>
+    <script src="js/carousel-headers.js" defer></script>
   </body>
 
 </html>
